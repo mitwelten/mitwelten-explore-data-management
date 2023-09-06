@@ -1,27 +1,35 @@
----
-title: "Birds Time Of Day"
-author: "Timeo Wullschleger"
-date: "2023-09-06"
-output: pdf_document
----
+Birds Time Of Day
+================
+Timeo Wullschleger
+2023-09-06
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
-```{r}
+``` r
 library(httr)
 library(dplyr)
+```
+
+    ## 
+    ## Attache Paket: 'dplyr'
+
+    ## Die folgenden Objekte sind maskiert von 'package:stats':
+    ## 
+    ##     filter, lag
+
+    ## Die folgenden Objekte sind maskiert von 'package:base':
+    ## 
+    ##     intersect, setdiff, setequal, union
+
+``` r
 library(jsonlite)
 library(ggplot2)
 ```
 
-```{r}
+``` r
 BASE_URL <- "https://data.mitwelten.org/api/v3/"
 taxon.name <- "apus apus"
 ```
 
-```{r}
+``` r
 taxon_key_lookup <- function(name) {
   names <- tolower(unlist(strsplit(name, " ")))
   names[1] <-
@@ -106,12 +114,27 @@ get_bird_tod <- function(
 }
 ```
 
-```{r}
+``` r
 bird_tod_df <- get_bird_tod(name = taxon.name, bucket_width_m = 30)
+```
+
+    ## taxon key lookup for Apus apus
+
+    ## No encoding supplied: defaulting to UTF-8.
+
+``` r
 summary(bird_tod_df)
 ```
 
-```{r}
+    ##  minute_of_day        values        
+    ##  Min.   :   0.0   Min.   :    1.00  
+    ##  1st Qu.: 352.5   1st Qu.:   93.25  
+    ##  Median : 705.0   Median : 2649.50  
+    ##  Mean   : 705.0   Mean   : 3263.29  
+    ##  3rd Qu.:1057.5   3rd Qu.: 4848.00  
+    ##  Max.   :1410.0   Max.   :19269.00
+
+``` r
 bird_tod_df$hour <- floor(bird_tod_df$minute_of_day / 60)
 bird_tod_df$minute <- bird_tod_df$minute_of_day %% 60
 
@@ -125,3 +148,5 @@ ggplot(bird_tod_df, aes(x = time_readable, y = values)) +
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 90, hjust = 1))
 ```
+
+![](birds_time_of_day_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
