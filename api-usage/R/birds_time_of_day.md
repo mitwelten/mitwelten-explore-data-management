@@ -6,20 +6,6 @@ Timeo Wullschleger
 ``` r
 library(httr)
 library(dplyr)
-```
-
-    ## 
-    ## Attache Paket: 'dplyr'
-
-    ## Die folgenden Objekte sind maskiert von 'package:stats':
-    ## 
-    ##     filter, lag
-
-    ## Die folgenden Objekte sind maskiert von 'package:base':
-    ## 
-    ##     intersect, setdiff, setequal, union
-
-``` r
 library(jsonlite)
 library(ggplot2)
 ```
