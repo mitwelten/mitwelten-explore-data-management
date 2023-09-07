@@ -1,5 +1,17 @@
 # Mitwelten Explore Data Management
 
+## API usage
+
+API Documentation: [data.mitwelten.org/api/v3/docs](https://data.mitwelten.org/api/v3/docs)
+
+* [Python examples](api-usage/python/)
+* [R examples](api-usage/R/)
+* JavaScript examples on ObservableHQ
+  * [most active birds](https://observablehq.com/@timeo-wullschleger/mitwelten-most-active-birds)
+  * [daily bird detections visualizes as calendar plot](https://observablehq.com/@timeo-wullschleger/mitwelten-birds-calendar)
+  * [bird detections by taxon id](https://observablehq.com/@timeo-wullschleger/mitwelten-detected-birds)
+
+
 ## Data ingest
 
 Install the dependencies to run the scripts:
