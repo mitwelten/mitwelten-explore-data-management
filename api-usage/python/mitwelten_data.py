@@ -109,7 +109,7 @@ def get_bird_tod(
 
 
 class PollinatorCat(str, Enum):
-    all = None
+    all = "all"
     apis = "honigbiene"
     apidae = "wildbiene"
     bombus = "hummel"
@@ -118,7 +118,7 @@ class PollinatorCat(str, Enum):
 
 
 def get_pollinator_detections(
-    cat: PollinatorCat = None,
+    cat: PollinatorCat = PollinatorCat.all,
     confidence: float = 0.7,
     bucket_width="1d",
     time_from=None,
@@ -133,7 +133,7 @@ def get_pollinator_detections(
         params["from"] = time_from
     if time_to:
         params["to"] = time_to
-    if cat:
+    if cat.value != "all":
         params["pollinator_class"] = cat.value
     url = f"{BASE_URL}pollinators/date?{urlencode(params)}"
     req = requests.get(url)
@@ -145,7 +145,7 @@ def get_pollinator_detections(
 
 
 def get_pollinator_tod(
-    cat: PollinatorCat = None,
+    cat: PollinatorCat = PollinatorCat.all,
     confidence: float = 0.7,
     bucket_width_m=60,
     time_from=None,
@@ -160,7 +160,7 @@ def get_pollinator_tod(
         params["from"] = time_from
     if time_to:
         params["to"] = time_to
-    if cat:
+    if cat.value != "all":
         params["pollinator_class"] = cat.value
     url = f"{BASE_URL}pollinators/time_of_day?{urlencode(params)}"
     req = requests.get(url)
